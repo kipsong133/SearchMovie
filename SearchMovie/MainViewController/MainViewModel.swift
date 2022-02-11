@@ -15,6 +15,8 @@ class MainViewModel {
     let movieTableViewModel = MovieTableViewModel()
     let searchTextFieldViewModel = SearchTextFieldViewModel()
     
+//    let cellData: Driver<[MovieCellData]>
+    
     init() {
         
         let movieResult = searchTextFieldViewModel.shouldLoadResult
@@ -24,7 +26,31 @@ class MainViewModel {
 //            }
 //            .share()
         
+        let  movies = [
+            MovieCellData(thumbnailURL: nil, name: "a", filmDirector: "a", performer: "a", rating: 1.0),
+            MovieCellData(thumbnailURL: nil, name: "a", filmDirector: "a", performer: "a", rating: 1.0),
+            MovieCellData(thumbnailURL: nil, name: "a", filmDirector: "a", performer: "a", rating: 1.0),
+            MovieCellData(thumbnailURL: nil, name: "a", filmDirector: "a", performer: "a", rating: 1.0),
+            MovieCellData(thumbnailURL: nil, name: "a", filmDirector: "a", performer: "a", rating: 1.0),
+            MovieCellData(thumbnailURL: nil, name: "a", filmDirector: "a", performer: "a", rating: 1.0),
+            MovieCellData(thumbnailURL: nil, name: "a", filmDirector: "a", performer: "a", rating: 1.0),
+            MovieCellData(thumbnailURL: nil, name: "a", filmDirector: "a", performer: "a", rating: 1.0),
+            MovieCellData(thumbnailURL: nil, name: "a", filmDirector: "a", performer: "a", rating: 1.0),
+            MovieCellData(thumbnailURL: nil, name: "a", filmDirector: "a", performer: "a", rating: 1.0),
+            MovieCellData(thumbnailURL: nil, name: "a", filmDirector: "a", performer: "a", rating: 1.0),
+            MovieCellData(thumbnailURL: nil, name: "a", filmDirector: "a", performer: "a", rating: 1.0),
+            MovieCellData(thumbnailURL: nil, name: "a", filmDirector: "a", performer: "a", rating: 1.0),
+            MovieCellData(thumbnailURL: nil, name: "a", filmDirector: "a", performer: "a", rating: 1.0),
+            MovieCellData(thumbnailURL: nil, name: "a", filmDirector: "a", performer: "a", rating: 1.0),
+            MovieCellData(thumbnailURL: nil, name: "a", filmDirector: "a", performer: "a", rating: 1.0)
+        ]
         
+        Observable<[MovieCellData]>.create({ observer in
+            observer.onNext(movies)
+            return Disposables.create()
+        })
+            .bind(to: movieTableViewModel.movieCellData)
+            .disposed(by: disposeBag)
     }
     
 }

@@ -22,6 +22,7 @@ class MovieTableView: UITableView {
     }
     
     public func bind(_ viewModel: MovieTableViewModel) {
+        
         viewModel.cellData
             .drive(self.rx.items) { tv, row, data in
                 let index = IndexPath(row: row, section: 0)
@@ -35,7 +36,7 @@ class MovieTableView: UITableView {
     }
     
     private func setupAttribute() {
-        self.backgroundColor = .red
+        self.backgroundColor = .white
         self.register(
             MovieTableViewCell.self,
             forCellReuseIdentifier: MovieTableViewCell.identifier)
