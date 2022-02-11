@@ -24,6 +24,9 @@
 		2526BC7527B558C500AB74E3 /* MainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2526BC7427B558C500AB74E3 /* MainModel.swift */; };
 		2526BC7827B559CE00AB74E3 /* MovieCellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2526BC7727B559CE00AB74E3 /* MovieCellData.swift */; };
 		2526BC7A27B55AB900AB74E3 /* MovieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2526BC7927B55AB900AB74E3 /* MovieTableViewCell.swift */; };
+		25FDC7D527B6110100739164 /* SearchMovieAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25FDC7D427B6110100739164 /* SearchMovieAPI.swift */; };
+		25FDC7D727B6139800739164 /* SearchMovieNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25FDC7D627B6139800739164 /* SearchMovieNetwork.swift */; };
+		25FDC7D927B6141400739164 /* NaverMovieResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25FDC7D827B6141400739164 /* NaverMovieResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +45,9 @@
 		2526BC7427B558C500AB74E3 /* MainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainModel.swift; sourceTree = "<group>"; };
 		2526BC7727B559CE00AB74E3 /* MovieCellData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCellData.swift; sourceTree = "<group>"; };
 		2526BC7927B55AB900AB74E3 /* MovieTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTableViewCell.swift; sourceTree = "<group>"; };
+		25FDC7D427B6110100739164 /* SearchMovieAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMovieAPI.swift; sourceTree = "<group>"; };
+		25FDC7D627B6139800739164 /* SearchMovieNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMovieNetwork.swift; sourceTree = "<group>"; };
+		25FDC7D827B6141400739164 /* NaverMovieResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaverMovieResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +86,7 @@
 			children = (
 				2526BC4627B54AB900AB74E3 /* AppDelegate.swift */,
 				2526BC4827B54AB900AB74E3 /* SceneDelegate.swift */,
+				25FDC7D327B610F100739164 /* Network */,
 				2526BC7627B559C900AB74E3 /* Entity */,
 				2526BC6827B54B8F00AB74E3 /* MainViewController */,
 				2526BC4F27B54ABB00AB74E3 /* Assets.xcassets */,
@@ -134,6 +141,16 @@
 				2526BC7727B559CE00AB74E3 /* MovieCellData.swift */,
 			);
 			path = Entity;
+			sourceTree = "<group>";
+		};
+		25FDC7D327B610F100739164 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				25FDC7D427B6110100739164 /* SearchMovieAPI.swift */,
+				25FDC7D627B6139800739164 /* SearchMovieNetwork.swift */,
+				25FDC7D827B6141400739164 /* NaverMovieResponse.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,13 +236,16 @@
 				2526BC7327B553D500AB74E3 /* MovieTableViewModel.swift in Sources */,
 				2526BC6C27B5512900AB74E3 /* SearchTextFieldViewModel.swift in Sources */,
 				2526BC6527B54AFC00AB74E3 /* MainViewController.swift in Sources */,
+				25FDC7D527B6110100739164 /* SearchMovieAPI.swift in Sources */,
 				2526BC4727B54AB900AB74E3 /* AppDelegate.swift in Sources */,
 				2526BC7827B559CE00AB74E3 /* MovieCellData.swift in Sources */,
 				2526BC6A27B5512500AB74E3 /* SearchTextField.swift in Sources */,
 				2526BC7527B558C500AB74E3 /* MainModel.swift in Sources */,
+				25FDC7D927B6141400739164 /* NaverMovieResponse.swift in Sources */,
 				2526BC4927B54AB900AB74E3 /* SceneDelegate.swift in Sources */,
 				2526BC7127B553D100AB74E3 /* MovieTableView.swift in Sources */,
 				2526BC7A27B55AB900AB74E3 /* MovieTableViewCell.swift in Sources */,
+				25FDC7D727B6139800739164 /* SearchMovieNetwork.swift in Sources */,
 				2526BC6727B54B1500AB74E3 /* MainViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

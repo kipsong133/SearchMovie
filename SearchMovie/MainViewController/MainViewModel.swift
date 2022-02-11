@@ -15,16 +15,48 @@ class MainViewModel {
     let movieTableViewModel = MovieTableViewModel()
     let searchTextFieldViewModel = SearchTextFieldViewModel()
     
-    init() {
+//    let cellData: Driver<[MovieCellData]>
+    
+    init(model: MainModel = MainModel()) {
         
         let movieResult = searchTextFieldViewModel.shouldLoadResult
-//            .flatMapLatest { query in
+            .flatMapLatest { query in
+                model.searchBlog(query)
+            }
+            .share()
+        
+        let movieValue = movieResult
+            .compactMap { response -> NaverMovieResponse? in
+                model.getMovieValue(response)
+            }
+        
+        let movieError = movieResult
+            .compactMap { response -> String? in
+                model.getMovieError(response)
+            }
+        
+        let cellData = movieValue
+            .map { movie -> [MovieCellData] in
+                model.getMovieCellData(movie)
+            }
+  
+        cellData
+            .bind(to: movieTableViewModel.movieCellData)
+            .disposed(by: disposeBag)
+            
+        
+        
+        /* dummy data */
+//        let  movies = [
+//            MovieCellData(thumbnailURL: nil, name: "a", filmDirector: "a", performer: "a", rating: "1.0"),
+//        ]
 //
-//                print(query)
-//            }
-//            .share()
-        
-        
+//        Observable<[MovieCellData]>.create({ observer in
+//            observer.onNext(movies)
+//            return Disposables.create()
+//        })
+//            .bind(to: movieTableViewModel.movieCellData)
+//            .disposed(by: disposeBag)
     }
     
 }

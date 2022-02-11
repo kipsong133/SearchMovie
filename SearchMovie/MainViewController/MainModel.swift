@@ -6,17 +6,43 @@
 //
 
 import Foundation
-//
-//enum SearchMovieNetworkError: Error {
-//    case invalidJSON
-//    case networkError
-//    case invalidURL
-//}
-//
-//class MainModel {
-//    let network = SearchMovieNetwork()
-//    
-//    func searchBlog(_ query: String) -> Single<Result<DKBlog, SearchMovieNetworkError>> {
-//        return network.searchBlog(query: query)
-//    }
-//}
+import RxSwift
+
+
+
+class MainModel {
+    let network = SearchMovieNetwork()
+    
+    func searchBlog(_ query: String)
+    -> Single<Result<NaverMovieResponse, SearchMovieNetworkError>> {
+        return network.searchMovie(query: query)
+    }
+    
+    func getMovieValue(_ response: Result<NaverMovieResponse,
+                       SearchMovieNetworkError>)
+    -> NaverMovieResponse? {
+        guard case .success(let value) = response else { return nil }
+        return value
+    }
+    
+    func getMovieError(_ response: Result<NaverMovieResponse,
+                       SearchMovieNetworkError>)
+    -> String? {
+        guard case .failure(let error) = response else { return nil }
+        return error.localizedDescription
+    }
+    
+    func getMovieCellData(_ value: NaverMovieResponse) -> [MovieCellData] {
+        return value.items
+            .map { movie in
+                let thumbnailURL = URL(string: movie.thumbnailImageURLStr ?? "")
+                return MovieCellData(
+                    thumbnailURL: thumbnailURL,
+                    name: movie.title,
+                    filmDirector: movie.director,
+                    performer: movie.actor,
+                    rating: movie.userRating)
+            }
+            
+    }
+}

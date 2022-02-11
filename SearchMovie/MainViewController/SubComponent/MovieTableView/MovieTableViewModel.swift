@@ -9,11 +9,10 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-
-
 class MovieTableViewModel {
+    let disposeBag = DisposeBag()
     
-    let movieCellData = PublishRelay<[MovieCellData]>()
+    let movieCellData = PublishSubject<[MovieCellData]>()
     
     let cellData: Driver<[MovieCellData]>
     
