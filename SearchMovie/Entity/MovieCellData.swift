@@ -12,5 +12,5 @@ struct MovieCellData {
     let name: String?
     let filmDirector: String?
     let performer: String?
-    let rating: Float?
+    let rating: String?
 }
