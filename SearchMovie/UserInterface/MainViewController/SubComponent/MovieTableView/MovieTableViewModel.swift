@@ -13,7 +13,7 @@ class MovieTableViewModel {
     let disposeBag = DisposeBag()
     
     let movieCellData = PublishSubject<[MovieCellData]>()
-    
+
     let cellData: Driver<[MovieCellData]>
     
     init() {

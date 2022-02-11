@@ -33,12 +33,25 @@ class MainViewController: UIViewController {
     }
     
     public func bind(_ viewModel: MainViewModel) {
-        searchTextField.bind(viewModel.searchTextFieldViewModel)
-        movieTableView.bind(viewModel.movieTableViewModel)
+        searchTextField
+            .bind(viewModel.searchTextFieldViewModel)
         
-//        searchTextField.rx.controlEvent([.editingDidEndOnExit])
-//            .subscribe { _ in }
-//            .disposed(by: disposeBag)
+        movieTableView
+            .bind(viewModel.movieTableViewModel)
+        
+        viewModel.push
+            .drive(onNext: { url in
+                let detailViewController = DetailViewController(url: url!)
+                self.show(detailViewController, sender: nil)
+            })
+            .disposed(by: disposeBag)
+        
+        movieTableView.rx.itemSelected
+            .map { $0.row }
+            .bind(to: viewModel.itemSelected)
+            .disposed(by: disposeBag)
+        
+        
     }
     
     private func setupAttribute() {

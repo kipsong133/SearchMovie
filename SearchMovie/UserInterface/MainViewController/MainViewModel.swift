@@ -15,8 +15,11 @@ class MainViewModel {
     let movieTableViewModel = MovieTableViewModel()
     let searchTextFieldViewModel = SearchTextFieldViewModel()
     
-//    let cellData: Driver<[MovieCellData]>
+    let refreshValueChanged = PublishRelay<Void>()
     
+    let push: Driver<URL?>
+    let itemSelected = PublishRelay<Int>()
+
     init(model: MainModel = MainModel()) {
         
         let movieResult = searchTextFieldViewModel.shouldLoadResult
@@ -30,33 +33,30 @@ class MainViewModel {
                 model.getMovieValue(response)
             }
         
-        let movieError = movieResult
-            .compactMap { response -> String? in
-                model.getMovieError(response)
-            }
+//        let movieError = movieResult
+//            .compactMap { response -> String? in
+//                model.getMovieError(response)
+//            }
+        
         
         let cellData = movieValue
             .map { movie -> [MovieCellData] in
                 model.getMovieCellData(movie)
             }
-  
+        
         cellData
             .bind(to: movieTableViewModel.movieCellData)
             .disposed(by: disposeBag)
-            
         
-        
-        /* dummy data */
-//        let  movies = [
-//            MovieCellData(thumbnailURL: nil, name: "a", filmDirector: "a", performer: "a", rating: "1.0"),
-//        ]
-//
-//        Observable<[MovieCellData]>.create({ observer in
-//            observer.onNext(movies)
-//            return Disposables.create()
-//        })
-//            .bind(to: movieTableViewModel.movieCellData)
-//            .disposed(by: disposeBag)
+        self.push = Observable
+            .combineLatest(
+                cellData,
+                itemSelected
+            ).map({ data, row -> URL? in
+                URL(string: data[row].link ?? "")
+            })
+            .filter { $0 != nil }
+            .asDriver(onErrorDriveWith: .empty())
     }
     
 }

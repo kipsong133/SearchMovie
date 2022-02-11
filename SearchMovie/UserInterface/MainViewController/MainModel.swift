@@ -41,7 +41,8 @@ class MainModel {
                     name: movie.title,
                     filmDirector: movie.director,
                     performer: movie.actor,
-                    rating: movie.userRating)
+                    rating: movie.userRating,
+                    link: movie.link)
             }
             
     }

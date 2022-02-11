@@ -13,4 +13,5 @@ struct MovieCellData {
     let filmDirector: String?
     let performer: String?
     let rating: String?
+    let link: String?
 }
