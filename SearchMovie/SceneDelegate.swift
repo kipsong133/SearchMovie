@@ -11,8 +11,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
     
-    let mainViewModel = MainViewModel()
-
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
         if #available(iOS 15, *) {
@@ -21,6 +19,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             UINavigationBar.appearance().standardAppearance = appearance
             UINavigationBar.appearance().scrollEdgeAppearance = appearance
         }
+        
+        let storage = MemoryStorage()
+        
+        let mainViewModel = MainViewModel(
+            storage: storage,
+            tableViewModel: MovieTableViewModel(storage: storage),
+            textFieldViewModel: SearchTextFieldViewModel())
         
         guard let windowScene = (scene as? UIWindowScene) else { return }
         self.window = UIWindow(windowScene: windowScene)

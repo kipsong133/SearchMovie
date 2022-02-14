@@ -12,22 +12,32 @@ import RxCocoa
 class MainViewModel {
     let disposeBag = DisposeBag()
     
-    let movieTableViewModel = MovieTableViewModel()
-    let searchTextFieldViewModel = SearchTextFieldViewModel()
+    let storage: FavoriteStorageType
+    
+    let movieTableViewModel: MovieTableViewModel
+    let searchTextFieldViewModel: SearchTextFieldViewModel
     
     let refreshValueChanged = PublishRelay<Void>()
     
-    let push: Driver<MovieCellData?>
+    let pushDetail: Driver<MovieCellData?>
     
-    let modal = PublishSubject<Void>()
+    let pushFavorite = PublishSubject<Void>()
     
     let itemSelected = PublishRelay<Int>()
 
-    init(model: MainModel = MainModel()) {
+    init(storage: FavoriteStorageType,
+         tableViewModel: MovieTableViewModel,
+         textFieldViewModel: SearchTextFieldViewModel,
+         model: MainModel = MainModel()) {
+        
+        self.storage = storage
+        self.movieTableViewModel = tableViewModel
+        self.searchTextFieldViewModel = textFieldViewModel
         
         let movieResult = searchTextFieldViewModel.shouldLoadResult
             .flatMapLatest { query in
                 model.searchBlog(query)
+                
             }
             .share()
         
@@ -58,7 +68,7 @@ class MainViewModel {
             .bind(to: movieTableViewModel.searchButtonTapped)
             .disposed(by: disposeBag)
         
-        self.push = Observable
+        self.pushDetail = Observable
             .combineLatest(
                 cellData,
                 itemSelected

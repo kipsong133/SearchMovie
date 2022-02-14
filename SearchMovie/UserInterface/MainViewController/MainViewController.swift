@@ -39,10 +39,10 @@ class MainViewController: UIViewController {
             .bind(viewModel.movieTableViewModel)
         
         favoriteButton.rx.tap
-            .bind(to: viewModel.modal)
+            .bind(to: viewModel.pushFavorite)
             .disposed(by: disposeBag)
         
-        viewModel.push
+        viewModel.pushDetail
             .drive(onNext: { cellData in
                 let detailViewController = DetailViewController(cellData: cellData)
                 self.show(detailViewController, sender: nil)
@@ -54,13 +54,12 @@ class MainViewController: UIViewController {
             .bind(to: viewModel.itemSelected)
             .disposed(by: disposeBag)
         
-        viewModel.modal
+        viewModel.pushFavorite
             .subscribe(onNext: {_ in
                 let favoriteViewController = FavoriteViewController()
-                let viewModel = FavoriteViewModel()
+                let viewModel = FavoriteViewModel(storage: viewModel.storage)
                 favoriteViewController.bind(viewModel)
-                favoriteViewController.modalPresentationStyle = .fullScreen
-                self.present(favoriteViewController, animated: true, completion: nil)
+                self.show(favoriteViewController, sender: nil)
             })
             .disposed(by: disposeBag)
     }

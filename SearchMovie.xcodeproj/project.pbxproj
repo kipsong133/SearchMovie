@@ -27,6 +27,8 @@
 		253783FC27BA2DD7004E12F5 /* FavoriteTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253783FB27BA2DD7004E12F5 /* FavoriteTableViewModel.swift */; };
 		253783FF27BA3C0B004E12F5 /* CoreDataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253783FE27BA3C0B004E12F5 /* CoreDataStorage.swift */; };
 		2537840227BA3D29004E12F5 /* FavoriteMovies.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2537840027BA3D29004E12F5 /* FavoriteMovies.xcdatamodeld */; };
+		2537840427BA6308004E12F5 /* FavoriteStorageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2537840327BA6308004E12F5 /* FavoriteStorageType.swift */; };
+		2537840927BA805D004E12F5 /* MemoryStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2537840827BA805D004E12F5 /* MemoryStorage.swift */; };
 		25FDC7D527B6110100739164 /* SearchMovieAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25FDC7D427B6110100739164 /* SearchMovieAPI.swift */; };
 		25FDC7D727B6139800739164 /* SearchMovieNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25FDC7D627B6139800739164 /* SearchMovieNetwork.swift */; };
 		25FDC7D927B6141400739164 /* NaverMovieResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25FDC7D827B6141400739164 /* NaverMovieResponse.swift */; };
@@ -58,6 +60,8 @@
 		253783FB27BA2DD7004E12F5 /* FavoriteTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTableViewModel.swift; sourceTree = "<group>"; };
 		253783FE27BA3C0B004E12F5 /* CoreDataStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStorage.swift; sourceTree = "<group>"; };
 		2537840127BA3D29004E12F5 /* FavoriteMovies.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FavoriteMovies.xcdatamodel; sourceTree = "<group>"; };
+		2537840327BA6308004E12F5 /* FavoriteStorageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteStorageType.swift; sourceTree = "<group>"; };
+		2537840827BA805D004E12F5 /* MemoryStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryStorage.swift; sourceTree = "<group>"; };
 		25FDC7D427B6110100739164 /* SearchMovieAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMovieAPI.swift; sourceTree = "<group>"; };
 		25FDC7D627B6139800739164 /* SearchMovieNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMovieNetwork.swift; sourceTree = "<group>"; };
 		25FDC7D827B6141400739164 /* NaverMovieResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaverMovieResponse.swift; sourceTree = "<group>"; };
@@ -173,9 +177,9 @@
 		253783F327BA2A0A004E12F5 /* FavoriteViewController */ = {
 			isa = PBXGroup;
 			children = (
-				253783F827BA2D89004E12F5 /* SubComponents */,
 				253783F427BA2A1C004E12F5 /* FavoriteViewController.swift */,
 				253783F627BA2A21004E12F5 /* FavoriteViewModel.swift */,
+				253783F827BA2D89004E12F5 /* SubComponents */,
 			);
 			path = FavoriteViewController;
 			sourceTree = "<group>";
@@ -193,6 +197,8 @@
 			isa = PBXGroup;
 			children = (
 				253783FE27BA3C0B004E12F5 /* CoreDataStorage.swift */,
+				2537840327BA6308004E12F5 /* FavoriteStorageType.swift */,
+				2537840827BA805D004E12F5 /* MemoryStorage.swift */,
 				2537840027BA3D29004E12F5 /* FavoriteMovies.xcdatamodeld */,
 			);
 			path = CoreDataStorage;
@@ -220,9 +226,9 @@
 		25FDC7DE27B64A5300739164 /* DetailViewController */ = {
 			isa = PBXGroup;
 			children = (
-				253783F027BA1837004E12F5 /* SubComponentes */,
 				25FDC7DF27B64A6500739164 /* DetailViewController.swift */,
 				25FDC7E127B64A6A00739164 /* DetailViewModel.swift */,
+				253783F027BA1837004E12F5 /* SubComponentes */,
 			);
 			path = DetailViewController;
 			sourceTree = "<group>";
@@ -241,7 +247,6 @@
 				5BC32BB29FABA7EC5EC42C58 /* Pods-SearchMovie.debug.xcconfig */,
 				A6924A390024DB77BB7FB290 /* Pods-SearchMovie.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -362,6 +367,7 @@
 				2526BC7327B553D500AB74E3 /* MovieTableViewModel.swift in Sources */,
 				253783FA27BA2D96004E12F5 /* FavoriteTableView.swift in Sources */,
 				2526BC6C27B5512900AB74E3 /* SearchTextFieldViewModel.swift in Sources */,
+				2537840427BA6308004E12F5 /* FavoriteStorageType.swift in Sources */,
 				2526BC6527B54AFC00AB74E3 /* MainViewController.swift in Sources */,
 				25FDC7D527B6110100739164 /* SearchMovieAPI.swift in Sources */,
 				253783F527BA2A1C004E12F5 /* FavoriteViewController.swift in Sources */,
@@ -372,6 +378,7 @@
 				2526BC7527B558C500AB74E3 /* MainModel.swift in Sources */,
 				2537840227BA3D29004E12F5 /* FavoriteMovies.xcdatamodeld in Sources */,
 				25FDC7D927B6141400739164 /* NaverMovieResponse.swift in Sources */,
+				2537840927BA805D004E12F5 /* MemoryStorage.swift in Sources */,
 				2526BC4927B54AB900AB74E3 /* SceneDelegate.swift in Sources */,
 				2526BC7127B553D100AB74E3 /* MovieTableView.swift in Sources */,
 				2526BC7A27B55AB900AB74E3 /* MovieTableViewCell.swift in Sources */,

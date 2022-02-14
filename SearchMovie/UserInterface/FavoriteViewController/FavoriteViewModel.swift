@@ -11,8 +11,8 @@ import RxCocoa
 
 class FavoriteViewModel {
     let disposeBag = DisposeBag()
-    
-    let favoriteTableViewModel = FavoriteTableViewModel()
+
+    let favoriteTableViewModel: FavoriteTableViewModel
     
     let favoriteCellData = PublishSubject<[MovieCellData]>()
     let itemSelected = PublishRelay<Int>()
@@ -21,15 +21,11 @@ class FavoriteViewModel {
     
     let title: Driver<String>
     
-    init() {
+    init(storage: FavoriteStorageType) {
+        self.favoriteTableViewModel = FavoriteTableViewModel(storage: storage)
+        
         title = Observable.just("즐겨찾기 목록")
             .asDriver(onErrorJustReturn: "")
-        
-        // CoreData -> favoriteCellData
-        
-        favoriteCellData
-            .bind(to: favoriteTableViewModel.movieCellData)
-            .disposed(by: disposeBag)
         
         self.push = Observable
             .combineLatest(
@@ -40,5 +36,7 @@ class FavoriteViewModel {
             }
             .filter { $0 != nil }
             .asDriver(onErrorDriveWith: .empty())
+        
+        
     }
 }

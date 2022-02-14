@@ -16,7 +16,6 @@ struct MovieCellData {
     let performer: String?
     let rating: String?
     let link: String?
-    var insertDate: Date
     var identity: String
     
     init(thumbnailURL: URL?,
@@ -24,19 +23,17 @@ struct MovieCellData {
          filmDirector: String?,
          performer: String?,
          rating: String?,
-         link: String?,
-         insertDate: Date = Date()) {
+         link: String?) {
         self.thumbnailURL = thumbnailURL
         self.name = name
         self.filmDirector = filmDirector
         self.performer = performer
         self.rating = rating
         self.link = link
-        self.insertDate = insertDate
-        self.identity = "\(insertDate.timeIntervalSinceReferenceDate)"
+        self.identity = name ?? "empty"
     }
     
-    init(content: MovieCellData, insertDate: Date = Date()) {
+    init(content: MovieCellData) {
         self = content
     }
 }
@@ -51,15 +48,13 @@ extension MovieCellData: Persistable {
     }
     
     init(entity: NSManagedObject) {
-        thumbnailURL = entity.value(forKey: "thumbnailURL") as! URL
-        name = entity.value(forKey: "name") as! String
-        filmDirector = entity.value(forKey: "filmDirector") as! String
-        performer = entity.value(forKey: "performer") as! String
-        rating = entity.value(forKey: "rating") as! String
-        link = entity.value(forKey: "link") as! String
-        insertDate = entity.value(forKey: "insertDate") as! Date
-        identity = "\(insertDate.timeIntervalSinceReferenceDate)"
-        
+        thumbnailURL = entity.value(forKey: "thumbnailURL") as? URL
+        name = entity.value(forKey: "name") as? String
+        filmDirector = entity.value(forKey: "filmDirector") as? String
+        performer = entity.value(forKey: "performer") as? String
+        rating = entity.value(forKey: "rating") as? String
+        link = entity.value(forKey: "link") as? String
+        identity = name ?? "empty"
     }
     
     func update(_ entity: NSManagedObject) {

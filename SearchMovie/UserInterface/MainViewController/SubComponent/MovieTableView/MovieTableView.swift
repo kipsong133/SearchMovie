@@ -24,12 +24,20 @@ class MovieTableView: UITableView {
     public func bind(_ viewModel: MovieTableViewModel) {
         
         viewModel.cellData
-            .drive(self.rx.items) { tv, row, data in
+            .drive(self.rx.items) { [weak self] tv, row, data in
+                guard let self = self else { return UITableViewCell() }
+                
                 let index = IndexPath(row: row, section: 0)
                 guard let cell = tv.dequeueReusableCell(
                     withIdentifier: MovieTableViewCell.identifier,
                     for: index) as? MovieTableViewCell else { return UITableViewCell() }
                 cell.setupData(data)
+                cell.favoriteButton.tag = row
+                
+                cell.favoriteButton.rx.tap
+                    .map { cell.favoriteButton.tag }
+                    .bind(to: viewModel.favoriteButtonTapped)
+                    .disposed(by: self.disposeBag)
                 
                 return cell
             }
