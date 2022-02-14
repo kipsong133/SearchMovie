@@ -8,7 +8,6 @@
 import Foundation
 import RxSwift
 import RxCocoa
-import SwiftUI
 
 class MainViewModel {
     let disposeBag = DisposeBag()
@@ -19,6 +18,9 @@ class MainViewModel {
     let refreshValueChanged = PublishRelay<Void>()
     
     let push: Driver<MovieCellData?>
+    
+    let modal = PublishSubject<Void>()
+    
     let itemSelected = PublishRelay<Int>()
 
     init(model: MainModel = MainModel()) {
@@ -34,10 +36,11 @@ class MainViewModel {
                 model.getMovieValue(response)
             }
         
-//        let movieError = movieResult
-//            .compactMap { response -> String? in
-//                model.getMovieError(response)
-//            }
+        // error
+        _ = movieResult
+            .compactMap { response -> String? in
+                model.getMovieError(response)
+            }
         
         
         let cellData = movieValue
@@ -65,6 +68,5 @@ class MainViewModel {
             .filter { $0 != nil }
             .asDriver(onErrorDriveWith: .empty())
     }
-    
 }
 

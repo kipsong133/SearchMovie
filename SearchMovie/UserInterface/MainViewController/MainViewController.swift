@@ -13,10 +13,9 @@ class MainViewController: UIViewController {
     let disposeBag = DisposeBag()
     
     let movieTableView = MovieTableView()
-    let rightButton = UIButton()
+    let favoriteButton = UIButton()
     
     let searchTextField = SearchTextField()
- 
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -39,6 +38,10 @@ class MainViewController: UIViewController {
         movieTableView
             .bind(viewModel.movieTableViewModel)
         
+        favoriteButton.rx.tap
+            .bind(to: viewModel.modal)
+            .disposed(by: disposeBag)
+        
         viewModel.push
             .drive(onNext: { cellData in
                 let detailViewController = DetailViewController(cellData: cellData)
@@ -49,6 +52,16 @@ class MainViewController: UIViewController {
         movieTableView.rx.itemSelected
             .map { $0.row }
             .bind(to: viewModel.itemSelected)
+            .disposed(by: disposeBag)
+        
+        viewModel.modal
+            .subscribe(onNext: {_ in
+                let favoriteViewController = FavoriteViewController()
+                let viewModel = FavoriteViewModel()
+                favoriteViewController.bind(viewModel)
+                favoriteViewController.modalPresentationStyle = .fullScreen
+                self.present(favoriteViewController, animated: true, completion: nil)
+            })
             .disposed(by: disposeBag)
     }
     
@@ -63,15 +76,15 @@ class MainViewController: UIViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: navigationTitleLabel)
         
         /* Favorite Button(Left) */
-        rightButton.frame = CGRect(origin: .zero, size: CGSize(width: 85, height: 30))
-        rightButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
-        rightButton.imageView?.tintColor = .yellow
-        rightButton.setTitle("즐겨찾기", for: .normal)
-        rightButton.titleLabel?.font = .systemFont(ofSize: 15)
-        rightButton.setTitleColor(.black, for: .normal)
-        rightButton.layer.borderWidth = 1
-        rightButton.layer.borderColor = UIColor.lightGray.cgColor
-        let favoriteButton = UIBarButtonItem(customView: rightButton)
+        favoriteButton.frame = CGRect(origin: .zero, size: CGSize(width: 85, height: 30))
+        favoriteButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
+        favoriteButton.imageView?.tintColor = .yellow
+        favoriteButton.setTitle("즐겨찾기", for: .normal)
+        favoriteButton.titleLabel?.font = .systemFont(ofSize: 15)
+        favoriteButton.setTitleColor(.black, for: .normal)
+        favoriteButton.layer.borderWidth = 1
+        favoriteButton.layer.borderColor = UIColor.lightGray.cgColor
+        let favoriteButton = UIBarButtonItem(customView: favoriteButton)
         navigationItem.setRightBarButton(favoriteButton, animated: true)
     }
     

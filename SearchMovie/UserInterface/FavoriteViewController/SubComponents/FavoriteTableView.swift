@@ -1,28 +1,28 @@
 //
-//  MovieTableView.swift
+//  FavoriteTableView.swift
 //  SearchMovie
 //
-//  Created by 김우성 on 2022/02/10.
+//  Created by 김우성 on 2022/02/14.
 //
 
 import UIKit
 import RxSwift
 import RxCocoa
 
-class MovieTableView: UITableView {
+class FavoriteTableView: UITableView {
     let disposeBag = DisposeBag()
     
     override init(frame: CGRect, style: UITableView.Style) {
         super.init(frame: frame, style: style)
         setupAttribute()
+        setupLayout()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public func bind(_ viewModel: MovieTableViewModel) {
-        
+    public func bind(_ viewModel: FavoriteTableViewModel) {
         viewModel.cellData
             .drive(self.rx.items) { tv, row, data in
                 let index = IndexPath(row: row, section: 0)
@@ -34,16 +34,6 @@ class MovieTableView: UITableView {
                 return cell
             }
             .disposed(by: disposeBag)
-        
-        viewModel.searchButtonTapped
-            .observe(on: MainScheduler.instance)
-            .subscribe(onNext: {
-                self.scrollToRow(
-                    at: IndexPath(row: 0, section: 0),
-                    at: .top,
-                    animated: true)
-            })
-            .disposed(by: disposeBag)
     }
     
     private func setupAttribute() {
@@ -54,5 +44,9 @@ class MovieTableView: UITableView {
         self.separatorStyle = .singleLine
         self.rowHeight = 150
         self.tableFooterView = UIView()
+    }
+    
+    private func setupLayout() {
+        
     }
 }

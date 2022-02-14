@@ -9,7 +9,7 @@
 import UIKit
 import SnapKit
 import WebKit
-import MapKit
+
 
 class DetailViewController: UIViewController {
     
