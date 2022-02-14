@@ -8,6 +8,7 @@
 import Foundation
 import RxSwift
 import RxCocoa
+import SwiftUI
 
 class MainViewModel {
     let disposeBag = DisposeBag()
@@ -46,6 +47,12 @@ class MainViewModel {
         
         cellData
             .bind(to: movieTableViewModel.movieCellData)
+            .disposed(by: disposeBag)
+        
+        searchTextFieldViewModel.returnButtonTapped
+            .withLatestFrom(cellData)
+            .map { _ in }
+            .bind(to: movieTableViewModel.searchButtonTapped)
             .disposed(by: disposeBag)
         
         self.push = Observable

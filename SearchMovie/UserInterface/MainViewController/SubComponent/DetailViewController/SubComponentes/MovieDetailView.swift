@@ -30,10 +30,11 @@ class MovieDetailView: UIView {
     }
     
     public func setupData(_ cellData: MovieCellData) {
+        print(cellData)
         movieImageView.kf.setImage(with: cellData.thumbnailURL, placeholder: UIImage(systemName: "photo"))
-        directorLabel.text = "감독: \(cellData.filmDirector ?? "")"
-        performerLabel.text = "출연: \(cellData.performer ?? "")"
-        ratingLabel.text = "평점: \(cellData.rating ?? "")"
+        directorLabel.text = "감독: \(cellData.filmDirector ?? "-")"
+        performerLabel.text = "출연: \(cellData.performer ?? "-")"
+        ratingLabel.text = "평점: \(cellData.rating ?? "-")"
     }
     
     private func setupAttribute() {
@@ -95,6 +96,6 @@ class MovieDetailView: UIView {
             $0.top.bottom.equalTo(movieImageView)
             $0.leading.equalTo(movieImageView.snp.trailing).offset(7)
             $0.trailing.equalTo(favoriteButton.snp.leading).inset(5)
-        }   
+        }
     }
 }

@@ -148,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				2526BC7727B559CE00AB74E3 /* MovieCellData.swift */,
+				25FDC7D827B6141400739164 /* NaverMovieResponse.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -165,7 +166,6 @@
 			children = (
 				25FDC7D427B6110100739164 /* SearchMovieAPI.swift */,
 				25FDC7D627B6139800739164 /* SearchMovieNetwork.swift */,
-				25FDC7D827B6141400739164 /* NaverMovieResponse.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";

@@ -13,8 +13,10 @@ class MovieTableViewModel {
     let disposeBag = DisposeBag()
     
     let movieCellData = PublishSubject<[MovieCellData]>()
-
+    
     let cellData: Driver<[MovieCellData]>
+    
+    let searchButtonTapped = PublishRelay<Void>()
     
     init() {
         self.cellData = self.movieCellData

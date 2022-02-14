@@ -30,9 +30,21 @@ class MovieTableView: UITableView {
                     withIdentifier: MovieTableViewCell.identifier,
                     for: index) as? MovieTableViewCell else { return UITableViewCell() }
                 cell.setupData(data)
+                
                 return cell
             }
             .disposed(by: disposeBag)
+        
+        viewModel.searchButtonTapped
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: {
+                self.scrollToRow(
+                    at: IndexPath(row: 0, section: 0),
+                    at: .top,
+                    animated: true)
+            })
+            .disposed(by: disposeBag)
+            
     }
     
     private func setupAttribute() {
