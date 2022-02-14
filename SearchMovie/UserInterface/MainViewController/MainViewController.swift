@@ -40,8 +40,8 @@ class MainViewController: UIViewController {
             .bind(viewModel.movieTableViewModel)
         
         viewModel.push
-            .drive(onNext: { url in
-                let detailViewController = DetailViewController(url: url!)
+            .drive(onNext: { cellData in
+                let detailViewController = DetailViewController(cellData: cellData)
                 self.show(detailViewController, sender: nil)
             })
             .disposed(by: disposeBag)
@@ -50,8 +50,6 @@ class MainViewController: UIViewController {
             .map { $0.row }
             .bind(to: viewModel.itemSelected)
             .disposed(by: disposeBag)
-        
-        
     }
     
     private func setupAttribute() {
@@ -75,8 +73,6 @@ class MainViewController: UIViewController {
         rightButton.layer.borderColor = UIColor.lightGray.cgColor
         let favoriteButton = UIBarButtonItem(customView: rightButton)
         navigationItem.setRightBarButton(favoriteButton, animated: true)
-        
-        
     }
     
     private func setupLayout() {

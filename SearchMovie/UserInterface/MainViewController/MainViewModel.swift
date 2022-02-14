@@ -17,7 +17,7 @@ class MainViewModel {
     
     let refreshValueChanged = PublishRelay<Void>()
     
-    let push: Driver<URL?>
+    let push: Driver<MovieCellData?>
     let itemSelected = PublishRelay<Int>()
 
     init(model: MainModel = MainModel()) {
@@ -52,9 +52,9 @@ class MainViewModel {
             .combineLatest(
                 cellData,
                 itemSelected
-            ).map({ data, row -> URL? in
-                URL(string: data[row].link ?? "")
-            })
+            ).map { (cellData, row) in
+                return cellData[row]
+            }
             .filter { $0 != nil }
             .asDriver(onErrorDriveWith: .empty())
     }
