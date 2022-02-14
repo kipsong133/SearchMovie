@@ -7,4 +7,19 @@
 
 import Foundation
 import RxSwift
-import RxCocoa
+import RxCoreData
+import CoreData
+
+protocol FavoriteStorageType {
+    @discardableResult
+    func addFavorite(content: MovieCellData) -> Observable<MovieCellData>
+    
+    @discardableResult
+    func memoList() -> Observable<[MovieCellData]>
+
+    @discardableResult
+    func delete(memo: MovieCellData) -> Observable<MovieCellData>
+}
+
+
+
