@@ -11,6 +11,10 @@ import RxCoreData
 import CoreData
 
 class CoreDataStorage: FavoriteStorageType {
+    func isContain(content: MovieCellData) -> Bool {
+        return false
+    }
+    
     let modelName: String
     
     init(modelName: String) {

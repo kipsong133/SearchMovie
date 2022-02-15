@@ -9,6 +9,10 @@ import Foundation
 import RxSwift
 
 protocol FavoriteStorageType {
+    
+    @discardableResult
+    func isContain(content: MovieCellData) -> Bool 
+        
     @discardableResult
     func addFavorite(content: MovieCellData) -> Observable<MovieCellData>
     

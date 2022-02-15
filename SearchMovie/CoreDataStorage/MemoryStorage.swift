@@ -15,6 +15,17 @@ class MemoryStorage: FavoriteStorageType {
     private lazy var store = BehaviorSubject<[MovieCellData]>(value: list)
     
     @discardableResult
+    func isContain(content: MovieCellData) -> Bool {
+        let cellData = MovieCellData(content: content)
+        if list.firstIndex(where: { $0.identity == cellData.identity }) != nil {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    
+    @discardableResult
     func addFavorite(content: MovieCellData) -> Observable<MovieCellData> {
         let cellData = MovieCellData(content: content)
         self.list.append(cellData)

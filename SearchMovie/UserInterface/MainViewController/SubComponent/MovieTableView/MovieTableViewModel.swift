@@ -31,16 +31,11 @@ class MovieTableViewModel {
                 favoriteButtonTapped,
                 cellData.asObservable()
             ).map { (row, cellData) in
-                
-                storage.addFavorite(content: cellData[row])
-//                    .subscribe(onNext: { _ in
-//                        print(cellData[row])
-//                        print(storage.favoriteList())
-//                    })
+                _ = storage.isContain(content: cellData[row]) ?
+                storage.delete(cellData: cellData[row])
+                : storage.addFavorite(content: cellData[row])
             }
-//            ).map { (_, row, cellData) in
-//                storage.addFavorite(content: cellData[row])
-//            }
+
             .bind(to: self.addFavoriteMovies)
             .disposed(by: disposeBag)
     }
