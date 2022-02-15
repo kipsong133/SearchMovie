@@ -27,7 +27,8 @@ class MemoryStorage: FavoriteStorageType {
     
     @discardableResult
     func addFavorite(content: MovieCellData) -> Observable<MovieCellData> {
-        let cellData = MovieCellData(content: content)
+        var cellData = MovieCellData(content: content)
+        cellData.isFavorite = true
         self.list.append(cellData)
         store.onNext(list)
         print(content)

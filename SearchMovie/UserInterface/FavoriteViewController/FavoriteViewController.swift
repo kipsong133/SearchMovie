@@ -31,6 +31,18 @@ class FavoriteViewController: UIViewController {
         viewModel.title
             .drive(self.rx.title)
             .disposed(by: disposeBag)
+        
+        favoriteTableView.rx.itemSelected
+            .map { $0.row }
+            .bind(to: viewModel.itemSelected)
+            .disposed(by: disposeBag)
+        
+        viewModel.pushDetail
+            .drive(onNext: { cellData in
+                let detailViewController = DetailViewController(cellData: cellData)
+                self.navigationController?.pushViewController(detailViewController, animated: true)
+            })
+            .disposed(by: disposeBag)
     }
     
     private func setupAttribute() {

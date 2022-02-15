@@ -14,20 +14,21 @@ class FavoriteViewModel {
 
     let favoriteTableViewModel: FavoriteTableViewModel
     
-    let favoriteCellData = PublishSubject<[MovieCellData]>()
+    let favoriteCellData: Observable<[MovieCellData]>
     let itemSelected = PublishRelay<Int>()
-    
-    let push: Driver<MovieCellData?>
+
+    let pushDetail: Driver<MovieCellData?>
     
     let title: Driver<String>
     
     init(storage: FavoriteStorageType) {
-        self.favoriteTableViewModel = FavoriteTableViewModel(storage: storage)
+        favoriteCellData = storage.favoriteList()
+        self.favoriteTableViewModel = FavoriteTableViewModel(favoriteList: favoriteCellData)
         
         title = Observable.just("즐겨찾기 목록")
             .asDriver(onErrorJustReturn: "")
         
-        self.push = Observable
+        self.pushDetail = Observable
             .combineLatest(
                 favoriteCellData,
                 itemSelected

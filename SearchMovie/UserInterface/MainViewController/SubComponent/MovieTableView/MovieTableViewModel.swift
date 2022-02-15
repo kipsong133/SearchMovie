@@ -19,14 +19,14 @@ class MovieTableViewModel {
     let searchButtonTapped = PublishRelay<Void>()
     
     let favoriteButtonTapped = PublishRelay<Int>()
-    
+
     let addFavoriteMovies = PublishRelay<Void>()
     
     init(storage: FavoriteStorageType) {
         self.cellData = self.movieCellData
             .asDriver(onErrorJustReturn: [])
 
-        Observable
+        _ = Observable
             .combineLatest(
                 favoriteButtonTapped,
                 cellData.asObservable()
@@ -35,7 +35,6 @@ class MovieTableViewModel {
                 storage.delete(cellData: cellData[row])
                 : storage.addFavorite(content: cellData[row])
             }
-
             .bind(to: self.addFavoriteMovies)
             .disposed(by: disposeBag)
     }

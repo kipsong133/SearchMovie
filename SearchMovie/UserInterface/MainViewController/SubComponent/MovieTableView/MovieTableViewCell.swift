@@ -29,6 +29,8 @@ class MovieTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+
+    
     public func setupData(_ data: MovieCellData) {
         if let imageURL = data.thumbnailURL {
             thumbnailImageView.kf.setImage(with: imageURL, placeholder: UIImage(systemName: "photo"))
@@ -37,6 +39,10 @@ class MovieTableViewCell: UITableViewCell {
         directorLabel.text = "감독: " + (data.filmDirector ?? "")
         performerLabel.text = "출연: " + (data.performer ?? "")
         ratingLabel.text = "평점: " + (data.rating ?? "")
+        
+        data.isFavorite
+        ? (favoriteButton.imageView?.tintColor = .yellow)
+        : (favoriteButton.imageView?.tintColor = .lightGray)
     }
     
     private func setupAttribute() {

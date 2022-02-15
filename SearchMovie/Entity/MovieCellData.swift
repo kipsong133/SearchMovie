@@ -17,6 +17,7 @@ struct MovieCellData {
     let rating: String?
     let link: String?
     var identity: String
+    var isFavorite = false
     
     init(thumbnailURL: URL?,
          name: String?,
@@ -54,7 +55,9 @@ extension MovieCellData: Persistable {
         performer = entity.value(forKey: "performer") as? String
         rating = entity.value(forKey: "rating") as? String
         link = entity.value(forKey: "link") as? String
+        isFavorite = entity.value(forKey: "isFavorite") as! Bool
         identity = name ?? "empty"
+        
     }
     
     func update(_ entity: NSManagedObject) {

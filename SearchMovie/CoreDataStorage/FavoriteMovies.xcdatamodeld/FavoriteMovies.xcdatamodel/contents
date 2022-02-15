@@ -3,6 +3,7 @@
     <entity name="FavoriteMovies" representedClassName="FavoriteMovies" syncable="YES" codeGenerationType="class">
         <attribute name="filmDirector" optional="YES" attributeType="String"/>
         <attribute name="identity" optional="YES" attributeType="String"/>
+        <attribute name="isFavorite" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="link" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="performer" optional="YES" attributeType="String"/>
@@ -10,6 +11,6 @@
         <attribute name="thumnailURL" optional="YES" attributeType="URI"/>
     </entity>
     <elements>
-        <element name="FavoriteMovies" positionX="-63" positionY="-18" width="128" height="134"/>
+        <element name="FavoriteMovies" positionX="-63" positionY="-18" width="128" height="149"/>
     </elements>
 </model>

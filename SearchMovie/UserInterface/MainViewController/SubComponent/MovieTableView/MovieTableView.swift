@@ -21,6 +21,12 @@ class MovieTableView: UITableView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    @objc
+    func favoriteButtonDidTap(_ sender: UIButton) {
+        sender.isSelected.toggle()
+        sender.imageView?.tintColor = sender.isSelected ? .yellow : .lightGray
+    }
+    
     public func bind(_ viewModel: MovieTableViewModel) {
         
         viewModel.cellData
@@ -34,6 +40,10 @@ class MovieTableView: UITableView {
                 cell.setupData(data)
                 cell.favoriteButton.tag = row
                 
+                cell.favoriteButton.addTarget(
+                    self,
+                    action: #selector(self.favoriteButtonDidTap(_:)),
+                    for: .touchUpInside)
                 cell.favoriteButton.rx.tap
                     .map { cell.favoriteButton.tag }
                     .bind(to: viewModel.favoriteButtonTapped)

@@ -11,18 +11,10 @@ import RxCocoa
 
 class FavoriteTableViewModel {
     let disposeBag = DisposeBag()
-    
-    var favoriteList: Observable<[MovieCellData]>
-    let movieCellData = PublishSubject<[MovieCellData]>()
-    
+
     let cellData: Driver<[MovieCellData]>
     
-    init(storage: FavoriteStorageType) {
-        
-        self.favoriteList = storage.favoriteList()
-//        favoriteList
-//            .bind(to: movieCellData)
-//            .disposed(by: disposeBag)
+    init(favoriteList: Observable<[MovieCellData]>) {
         
         cellData = favoriteList
             .asDriver(onErrorJustReturn: [])
